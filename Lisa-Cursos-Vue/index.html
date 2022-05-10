@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./estilos.css" />
+    <title>Lista de Cursos</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="contenedor">
+        <img
+          class="logo"
+          src="https://static.platzi.com/static/images/footer/logo.png"
+          alt=""
+        />
+        <h1 class="title">Mis Cursos de Platzi</h1>
+        <input type="text" placeholder="Nombre del Curso" v-model="title" />
+        <input type="number" placeholder="Numero de Horas" v-model="time" />
+        <button v-on:click="addCourse">Guardar Curso</button>
+        <div>
+          <h3>Lista de Cursos</h3>
+          <p class="aviso" v-show="courses >= 0">
+            ⚠ Aun no has realizado cursos
+          </p>
+          <div>
+            <ul>
+              <li v-for="(c, index) in courses" v-bind:key="c.id">
+                {{index+1}}: {{c.title}} contiene {{c.time}} horas
+                <button class="delete" v-on:click="deleteCourse(index)">
+                  Eliminar
+                </button>
+              </li>
+            </ul>
+            <p>
+              Llevo <strong class="totalDeHoras">{{ totalTime }}</strong> horas
+              aprendiendo en Platzi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
